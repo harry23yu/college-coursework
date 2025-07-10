@@ -1,0 +1,8 @@
+1. Lines 14 and 23 in ex1.cpp and line 27 in main.cpp generates the seg fault.
+2. The seg fault exists because the array of cars is 0 by 0. In other words, the value is NULL. I used the
+print command to find the cause of the seg fault.
+3. I used assignment 2 (the Pokemon assignment) to correctly populate the single Car object. I returned a ptr to a 
+Car struct, then returned the pointer (see lines 8-12). I didn't use a for loop in the populate car function because 
+each car has only a fixed number of passengers and one brand. I also changed a few lines in the main.cpp file. I ran 
+the program; it didn't print out anything, but the seg fault is gone.
+4. I used the print command.

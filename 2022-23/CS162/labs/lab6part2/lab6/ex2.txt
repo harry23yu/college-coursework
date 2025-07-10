@@ -1,0 +1,5 @@
+1. One of the values of the sorted array was 0. I used the print command to find the 
+logic error.
+2. I ran through the code and found out 93, the largest number, wasn't being printed 
+orginally. I did many tests, and I removed the = sign on j in line 31. That fixed the 
+problem, and the array is printed in order, with the number 93.

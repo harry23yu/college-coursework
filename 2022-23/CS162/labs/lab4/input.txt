@@ -1,0 +1,8 @@
+7
+4 C.J. Cregg Political_Science
+6 Olivia Dunham Criminal_Justice
+1 Josh Lyman Law
+3 Toby Ziegler Communications
+7 Leslie Knope Public_and_Environmental_Affairs
+2 Sam Seaborn Law
+5 Walter Bishop General_Sciences

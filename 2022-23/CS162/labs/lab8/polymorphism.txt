@@ -1,0 +1,15 @@
+Step 1
+
+1. I am going to make the area() function in shape polymorphic.
+2. Use references or pointers to make the function polymorphic.
+3. Yes, it can be a pure virtual function.
+4. The shape class is now the abstract base class.
+5. I don't need destructors in this scneario because no dynamic memory is allowed.
+
+Step 2
+
+1. The size of the vector is 10 because there are 10 different shapes. To check 
+the size of the vector, use the size() function. The capacity of the vector is 16. 
+To check the capacity of the vector, use the capacity() function.
+2. My program doesn't have memory leaks. I need to manually free the memory because 
+the shapes are dynamically allocated.
