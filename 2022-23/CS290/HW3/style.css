@@ -1,0 +1,64 @@
+body {
+    background-image: url(images/Background.avif);
+    margin: 50px;
+    color: gray;
+    font-family: Georgia;
+}
+
+header {
+    color: purple;
+    background-color: aquamarine;
+}
+
+main {
+    border-style: dotted;
+    border-width: 10px;
+}
+
+footer {
+    font-size: 12px;
+}
+
+nav {
+    background-color: white;
+}
+
+nav a {
+    background-color: lightgray;
+}
+
+nav a:hover {
+    background-color:yellow;
+}
+
+.favs {
+    font-size: 20px;
+}
+
+.timeOfDay {
+    font-weight: bold;
+}
+
+h1 {
+    font-family: arial;
+    color: green;
+}
+
+h2 {
+    font-family: verdana;
+    color: blue;
+}
+
+h3 {
+    font-family: sans-serif;
+    color: red;
+}
+
+p {
+    background-color: white;
+}
+
+table, tr, td, th {
+    border: 1px blue solid;
+}
+  
