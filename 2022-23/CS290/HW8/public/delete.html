@@ -1,0 +1,68 @@
+<!--Name: Harry Yu
+Date: 6/9/2023
+Course: CS 290-->
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Delete Songs</title>
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <main>
+            <header>
+                <h1>Music Services</h1>
+            </header>
+            <nav>
+                <a href="/search.html">Search by Genre</a> |
+                <a href="/update.html">Update a Song</a> |
+                <a href="/delete.html">Delete a Song</a> |
+                <a href="/add.html">Add a Song</a> |
+                <a href="/list.html">List All Songs</a>
+            </nav>
+            <h2>Delete Songs</h2>
+            <table id="deleteTable"></table>
+            <div id="error"></div>
+            <footer>
+                <p>Created by Harry Yu in May 2023</p>
+            </footer>
+        </main>
+    </body>
+    <script>
+        //Code copied from class
+
+        // Load all songs into the drop-down list
+        async function getAllSongs() {
+            const response = await fetch("/api/songs");
+            if (response.ok) {
+                const songs = await response.json();
+                let html = "<tr><th>Title</th><th>Artist</th><th></th></tr>";
+                for (let song of songs) {
+                    html += `<tr><td>${song.title}</td><td>${song.artist}</td><td><input type="button" id="${song._id}" class="deleteBtn" value="Delete"></td>`; 
+                }
+
+                document.getElementById("deleteTable").innerHTML = html;
+                document.querySelectorAll(".deleteBtn").forEach(e => e.addEventListener("click", deleteHandler));
+            }
+        }
+
+        //Delete the song when the delete button is pressed
+        async function deleteHandler() {
+            const response = await fetch("api/songs/" + this.id, {
+                method: "DELETE"
+            });
+            if (response.ok) {
+                getAllSongs();
+            }
+            else {
+                document.querySelector("#error").innerHTML = "Cannot delete song.";
+            }
+        }
+
+        addEventListener("DOMContentLoaded", async function() {
+            getAllSongs();
+        });
+    </script>
+</html>

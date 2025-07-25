@@ -1,0 +1,50 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Magic Math</title>
+        <link rel="stylesheet" href="game.css">
+        <script src="game.js"></script>
+    </head>
+    <body>
+        <main>
+            <header>
+                <h1>Magic Math</h1>
+            </header>
+            <section id="goalWinLoss">
+                <h3>Goal: <h3 id="goalNum"></h3></h3>
+                <h3>Wins: <h3 id="numWins">0</h3></h3>
+                <h3>Losses: <h3 id="numLosses">0</h3></h3>
+            </section>
+            <section id="threeSubSections">
+                <div id="gameBoardButtons">
+                    <button id="number"></button>
+                    <button id="number"></button>
+                    <button id="number"></button>
+                    <button id="number"></button>
+                </div>
+                <div id="operatorButtons">
+                    <button id="operator" class="plus">+</button>
+                    <br>
+                    <button id="operator" class="minus">-</button>
+                    <br>
+                    <button id="operator" class="multiply">*</button>
+                </div>
+                <div id="workArea">
+                    <p id="workAreaTitle">Work area</p>
+                    <h4 id="eq1" class="equation1"></h4>
+                    <h4 id="eq2" class="equation2"></h4>
+                    <h4 id="eq3" class="equation3"></h4>
+                </div>
+            </section>
+            <section>
+                <h2 id="message">Let's play! Click a number to start.</h2>
+                <button id="newGame">New game</button>
+            </section>
+            <footer>
+                <p>Created by Harry Yu in May 2023</p>
+            </footer>
+        </main>
+    </body>
+</html>

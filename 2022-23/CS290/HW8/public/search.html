@@ -1,0 +1,81 @@
+<!--Name: Harry Yu
+Date: 6/9/2023
+Course: CS 290-->
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Search songs</title>
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <main>
+            <header>
+                <h1>Music Services</h1>
+            </header>
+            <nav>
+                <a href="/search.html">Search by Genre</a> |
+                <a href="/update.html">Update a Song</a> |
+                <a href="/delete.html">Delete a Song</a> |
+                <a href="/add.html">Add a Song</a> |
+                <a href="/list.html">List All Songs</a>
+            </nav>
+            <h2>Search by Genre</h2>
+            <select id="genreDropdown">
+                <option value="electro house">Electro house</option>
+                <option value="disco">Disco</option>
+                <option value="soul">Soul</option>
+            </select>
+            <input type="button" value="Search" id="searchBtn">
+            <table id="songList"></table>
+            <div id="error"></div>
+            <footer>
+                <p>Created by Harry Yu in May 2023</p>
+            </footer>
+        </main>
+    </body>
+    <script>
+        //Code copied from class
+        addEventListener("DOMContentLoaded", async function() {
+            document.querySelector("#searchBtn").addEventListener("click", searchByGenre);
+            getAllGenre();
+        });
+
+        //Code copied from class
+        async function getAllGenre() {
+            const response = await fetch("api/songs");
+            if (response.ok) {
+                const allSongs = await response.json(); 
+                let genres = [];
+                let html = "";
+                for (let song of allSongs) { //Loop through all songs in the list
+                    for (let gen of song.genre) { //Loop through all genres in the song
+                        gen = gen.trim();
+                        if (!genres.includes(gen)) {
+                            genres.push(gen);
+                            html += `<option value="${gen}">${gen}</option>` //Add a new genre to the drop down list
+                        }
+                    }
+                }
+                document.querySelector("#genreDropdown").innerHTML = html;
+            }
+        }
+
+        //List all the songs from a specific genre
+        async function searchByGenre() {
+            const genre = document.querySelector("#genreDropdown option:checked").value;
+            console.log("genre"); //test
+            const response = await fetch("/api/songs/?genre=" + genre, {
+                method: "GET"
+            });
+            const songs = await response.json();  
+            let html = `<tr><th>ID</th><th>Title</th><th>Artist</th><th>Popularity</th><th>Release date</th><th>Genre(s)</th></tr>`;
+            for (let song of songs) {
+                html += `<tr><td>${song._id}</td><td>${song.title}</td><td>${song.artist}</td><td>${song.popularity}</td><td>${song.releaseDate}</td><td>${song.genre}</td>`;
+            }
+            document.getElementById("songList").innerHTML = html; //Print out all songs by the selected genre
+        }
+    </script>
+</html>

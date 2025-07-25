@@ -1,0 +1,47 @@
+h1 {
+    font-family: Arial;
+    color: green; 
+}
+
+header {
+    background: lightgray;
+}
+
+nav {
+    background: lightblue;
+}
+
+footer {
+    background: lightgreen;
+    font-family: 'Franklin Gothic';
+}
+
+#addSongSection {
+    border-style: solid;
+    padding-left: 10px;
+}
+
+th {
+    background-color: black;
+    color: white;
+}
+
+#search, #select, #addBtn, .deleteBtn, .selectBtn {
+    background-color: blue;
+    color: white;
+    border-radius: 10px;
+    width: 75px;
+}
+
+table, th, td {
+    border: 1px solid;
+    font-family: georgia;
+}
+
+tr:hover {
+    background-color: aqua;
+}
+
+#addSongSection {
+    background-color: lawngreen;
+}

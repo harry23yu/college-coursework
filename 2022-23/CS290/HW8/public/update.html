@@ -1,0 +1,129 @@
+<!--Name: Harry Yu
+Date: 6/9/2023
+Course: CS 290-->
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Update Songs</title>
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <main>
+            <header>
+                <h1>Music Services</h1>
+            </header>
+            <nav>
+                <a href="/search.html">Search by Genre</a> |
+                <a href="/update.html">Update a Song</a> |
+                <a href="/delete.html">Delete a Song</a> |
+                <a href="/add.html">Add a Song</a> |
+                <a href="/list.html">List All Songs</a>
+            </nav>
+            <h2>Update Songs</h2>
+            <table id="updateTable"></table>
+            <section id="updateSongSection">
+                <p>
+                    <label for="songID">ID:</label>
+                    <input id="songID" type="text">
+                </p>
+                <p>
+                    <label for="title">Title:</label>
+                    <input id="title" type="text">
+                </p>
+                <p>
+                    <label for="artist">Artist:</label>
+                    <input id="artist" type="text">
+                </p>
+                <p>
+                    Released: <input type="date" id="releaseDate">
+                </p>
+                <p>
+                    <label for="popularity">Popularity:</label>
+                    <input id="popularity" type="number" min="0" max="10">
+                </p>
+                <p>
+                    <label for="genre">Genre(s):</label>
+                    <input id="genre" type="text" placeholder="rock, grunge, etc.">
+                </p>
+                <p>
+                    <input type="button" id="updateBtn" value="Update">
+                </p>
+            </section>
+            <div id="error"></div>
+            <footer>
+                <p>Created by Harry Yu in May 2023</p>
+            </footer>
+        </main>
+    </body>
+    <script>
+        //Wrote the code from the professor's help
+
+        //Gets all the songs in the database
+        async function getAllSongs() {
+            const response = await fetch("/api/songs");
+            if (response.ok) {
+                const songs = await response.json();
+                let html = "<tr><th>Title</th><th>Artist</th><th></th></tr>";
+                for (let song of songs) {
+                    html += `<tr><td>${song.title}</td><td>${song.artist}</td><td><input type="button" id="${song._id}" class="selectBtn" value="Select"></td>`; 
+                }
+                document.getElementById("updateTable").innerHTML = html;
+                document.querySelectorAll(".selectBtn").forEach(e => e.addEventListener("click", selectHandler));
+            }
+        }
+
+        addEventListener("DOMContentLoaded", async function() {
+            document.querySelector("#updateBtn").addEventListener("click", updateSong);
+            // Load a song into the web form
+            getAllSongs();
+        });
+
+        //Puts the ID, title, artist, etc. of the song into the update form
+        async function selectHandler() {
+            const songId = this.id;
+            const response = await fetch("/api/songs/" + songId);
+            if (response.ok) {
+                let song = await response.json();
+                document.querySelector("#songID").value = song._id;
+                document.querySelector("#title").value = song.title;
+                document.querySelector("#artist").value = song.artist;
+                document.querySelector("#releaseDate").value = 
+                    song.releaseDate.substring(0, 10);
+                document.querySelector("#popularity").value = song.popularity;
+                document.querySelector("#genre").value = song.genre;
+            }
+        }
+
+        //Updates the song with new values
+        async function updateSong() {
+            // Create a song object from the form fields
+            const songId = document.querySelector("#songId").value;
+            const song = {
+                _id: document.querySelector("#songId").value,
+                title: document.querySelector("#title").value,
+                artist: document.querySelector("#artist").value,
+                releaseDate: document.querySelector("#releaseDate").value,
+                popularity: document.querySelector("#popularity").value,
+                genre: document.querySelector("#genre").value ? 
+                    document.querySelector("#genre").value.split(",") : []
+            };
+                
+            // Send PUT request with JSON-encoded song to Music API
+            const response = await fetch("/api/songs/" + songId, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(song)
+            });
+
+            if (response.ok) {      
+                alert("Updated song.");
+            }
+            else {
+                document.querySelector("#error").innerHTML = "Cannot update song.";
+            }     
+        }
+    </script>
+</html>

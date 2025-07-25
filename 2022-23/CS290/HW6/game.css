@@ -1,0 +1,97 @@
+header {
+    background-color: rgb(255, 119, 0);
+    padding: 40px 0px;
+}
+
+h1 {
+    color: white;
+    margin: 0px 0px 0px 20px;
+}
+
+section {
+    margin: 0px 0px 0px 20px;
+}
+
+footer {
+    background-color: rgb(255, 119, 0);
+}
+
+footer p {
+    margin: 20px 0px 0px 20px;
+}
+
+#newGame {
+    text-align: center;
+    background: blue;
+    color: white;
+    box-shadow: 0px 0px 5px 0px black;
+    border-radius: 20px;
+    padding: 10px 30px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+#operator {
+    color: blue;
+    border-width: 1px;
+    border-color: blue;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 30px;
+}
+
+#operatorButtons {
+    white-space: normal;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+#gameBoardButtons {
+    display: grid;
+    grid-template-columns: 100px 100px;
+    grid-template-rows: 100px 100px;
+    gap: 10px;
+}
+
+#number {
+    color: blue;
+    border-width: 1px;
+    border-color: blue;
+    cursor: pointer;
+}
+
+#workArea {
+    width: 250px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: blue;
+}
+
+#workAreaTitle {
+    color: blue;
+    font-size: 20px;
+    text-align: center;
+}
+
+#threeSubSections {
+    display: flex;
+    justify-content: space-between;
+}
+
+#goalWinLoss {
+    display: flex;
+    justify-content: space-around;
+}
+
+#number {
+    font-size: 30px;
+}
+
+h4 {
+    padding-left: 10px;
+}
+
+.used {
+    opacity: 0;
+}
